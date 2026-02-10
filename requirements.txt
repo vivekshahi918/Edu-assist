@@ -25,7 +25,7 @@ firebase-admin>=6.2.0
 streamlit-authenticator>=0.2.2
 docx2txt>=0.8
 pillow>=10.0.0
-tiktoken==0.5.2
+# tiktoken==0.5.2
 
 # No longer importing pytesseract directly in code, so it's optional
 # pytesseract>=0.3.10  # Requires system-level dependencies

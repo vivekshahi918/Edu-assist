@@ -1,4 +1,9 @@
 import streamlit as st
+
+from google import generativeai as genai
+
+genai.configure(api_key="AIzaSyBoM04atPjgLw6ck00pd6xzh9vxGHvA9LQ")
+
 from st_on_hover_tabs import on_hover_tabs
 import json
 from streamlit_lottie import st_lottie
@@ -9,7 +14,7 @@ from menu.Ask_To_PDF import main as ask_to_pdf_page
 from menu.ATS import main as ats_page
 
 # Setting the page configuration
-st.set_page_config(page_title="CollegeBuddy", page_icon='src/Logo College.png', layout='wide')
+st.set_page_config(page_title="EduAssist", page_icon='src/Logo College.png', layout='wide')
 
 # Initialize session state for theme
 if "current_theme" not in st.session_state:
@@ -18,7 +23,7 @@ if "current_theme" not in st.session_state:
 st.markdown('<style>' + open('./src/style.css').read() + '</style>', unsafe_allow_html=True)
 
 def home():
-    st.markdown("<h1 style='text-align: center;'>Welcome to Study Buddy!</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>Welcome to EduAssist!</h1>", unsafe_allow_html=True)
     st.markdown("<h4 style='text-align: center;'>AI-powered System for Students</h4>", unsafe_allow_html=True)
 
     try:
