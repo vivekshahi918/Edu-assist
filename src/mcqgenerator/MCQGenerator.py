@@ -1,4 +1,4 @@
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
 import os
 from dotenv import load_dotenv
@@ -44,7 +44,7 @@ quiz_generation_prompt = PromptTemplate(
 # Initialize the LLM
 def get_llm():
     # Try using gemini-2.0-flash first
-    preferred_models = ["models/gemini-2.0-flash", "models/gemini-1.5-pro", "models/gemini-pro"]
+    preferred_models = ["models/gemini-2.5-flash", "models/gemini-1.5-pro", "models/gemini-pro"]
     
     model_to_use = None
     for model in preferred_models:

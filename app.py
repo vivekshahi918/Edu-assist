@@ -1,8 +1,10 @@
 import streamlit as st
 
-from google import generativeai as genai
+import google.generativeai as genai
 
-genai.configure(api_key="AIzaSyBoM04atPjgLw6ck00pd6xzh9vxGHvA9LQ")
+genai.configure(api_key="YOUR_API_KEY")
+model = genai.GenerativeModel("gemini-2.5-flash")
+
 
 from st_on_hover_tabs import on_hover_tabs
 import json

@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  edu-assist:
+    build: .
+    container_name: edu_assist_app
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    restart: always

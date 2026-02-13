@@ -1,5 +1,6 @@
 import streamlit as st
 import google.generativeai as genai
+
 import PyPDF2 as pdf
 from dotenv import load_dotenv
 from streamlit_lottie import st_lottie
@@ -19,7 +20,7 @@ available_models = [model.name for model in models]
 print("Available models for ATS:", available_models)
 
 # Define preferred models in order of preference
-preferred_models = ["models/gemini-2.0-flash", "models/gemini-1.5-pro", "models/gemini-pro-vision", 
+preferred_models = ["models/gemini-2.5-flash", "models/gemini-1.5-pro", "models/gemini-pro-vision", 
                    "models/gemini-pro", "models/gemini-1.0-pro"]
 
 # Select the first available preferred model
@@ -396,25 +397,50 @@ def main():
                                 st.markdown(f"**{i}.** {tip}")
                 
                     # Add download button for a summary report
+                    missing_keywords = (
+                        "- " + "\n- ".join(response_data['MissingKeywordsintheResume'])
+                        if response_data['MissingKeywordsintheResume']
+                        else "No missing keywords found!"
+                    )
+
+                    skill_gaps = (
+                        "- " + "\n- ".join(response_data['KeySkillGaps'])
+                        if response_data['KeySkillGaps']
+                        else "No major skill gaps identified!"
+                    )
+
+                    improvements = (
+                        "1. " + "\n2. ".join(response_data['ResumeImprovementSuggestions'])
+                        if response_data['ResumeImprovementSuggestions']
+                        else "Your resume looks great!"
+                    )
+
+                    interview_tips = (
+                        "1. " + "\n2. ".join(response_data['InterviewTips'])
+                        if response_data['InterviewTips']
+                        else "No tips available."
+                    )
+
                     report = f"""# Resume Analysis Report for {job_role}
 
-## Overall Match: {response_data['PercentageMatch']}
+                    ## Overall Match: {response_data['PercentageMatch']}
 
-### Profile Summary
-{response_data['ProfileSummary']}
+                    ### Profile Summary
+                    {response_data['ProfileSummary']}
 
-### Missing Keywords
-{"- " + "\n- ".join(response_data['MissingKeywordsintheResume']) if response_data['MissingKeywordsintheResume'] else "No missing keywords found!"}
+                    ### Missing Keywords
+                    {missing_keywords}
 
-### Key Skill Gaps
-{"- " + "\n- ".join(response_data['KeySkillGaps']) if response_data['KeySkillGaps'] else "No major skill gaps identified!"}
+                    ### Key Skill Gaps
+                    {skill_gaps}
 
-### Resume Improvement Suggestions
-{"1. " + "\n2. ".join(response_data['ResumeImprovementSuggestions']) if response_data['ResumeImprovementSuggestions'] else "Your resume looks great!"}
+                    ### Resume Improvement Suggestions
+                    {improvements}
 
-### Interview Tips
-{"1. " + "\n2. ".join(response_data['InterviewTips'])}
-"""
+                    ### Interview Tips
+                    {interview_tips}
+                    """
+
                     
                     st.download_button(
                         label="Download Analysis Report",

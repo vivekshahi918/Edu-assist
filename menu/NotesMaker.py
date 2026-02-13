@@ -5,6 +5,7 @@ import streamlit as st
 import os
 import re
 import google.generativeai as genai
+
 from youtube_transcript_api import YouTubeTranscriptApi
 import requests
 from bs4 import BeautifulSoup
@@ -63,7 +64,7 @@ def select_model():
     available_models = [model.name for model in models]
     
     # Try models in order of preference
-    for name in ["models/gemini-2.0-flash", "models/gemini-1.5-pro", "models/gemini-pro"]:
+    for name in ["models/gemini-2.5-flash", "models/gemini-2.5-pro", "models/gemini-pro"]:
         if name in available_models or (name.startswith("models/") and 
                                       name[7:] in [m[7:] if m.startswith("models/") else m for m in available_models]):
             print(f"Using model: {name}")

@@ -1,2 +1,10 @@
+venv/
+
+**/venv/
 .env
-setup.py
+__pycache__/
+.git/
+.ipynb_checkpoints/
+*.pyc
+*.pyo
+*.pyd
