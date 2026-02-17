@@ -25,6 +25,11 @@ firebase-admin>=6.2.0
 streamlit-authenticator>=0.2.2
 docx2txt>=0.8
 pillow>=10.0.0
+langchain
+langchain-community
+langchain-core
+langchain-google-genai
+langchain-text-splitters
 # tiktoken==0.5.2
 
 # No longer importing pytesseract directly in code, so it's optional
